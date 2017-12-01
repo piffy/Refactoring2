@@ -14,34 +14,38 @@ public class RefactoringExe {
     /**
      * @param args the command line arguments
      * PROBLEMI: 
-     * Illeggibile. Richiede tempo.
-     * Nomi oscuri. Che sono? A che serve questa classe
+
      * Numeri magici. Che sono 1,2,3,4
      * Altri numeri magici. Ce sono 0.1,0.5, 0.7?
      * Ripetizione: vedete codice ripetuto??
+     * BUG OSCURO?
+     * 
+     * RISOLTO (tramite Refactor->Rename:
+     * Illeggibile. Richiede tempo.
+     * Nomi oscuri. Che sono? A che serve questa classe
      */
 
-  public double Calcola(double quantità, double tipo, double anni)
+  public double applicaSconto(double prezzo, double tipoCliente, double anni)
   {
-    double ris = 0;
+    double prezzoScontato = 0;
     double sco = (anni > 5) ? (double)5/100 : (double)anni/100; 
-    if (tipo == 1)
+    if (tipoCliente == 1)
     {
-      ris = quantità;
+      prezzoScontato = prezzo;
     }
-    else if (tipo == 2)
+    else if (tipoCliente == 2)
     {
-      ris = (quantità - (0.1 * quantità)) - sco * (quantità - (0.1 * quantità));
+      prezzoScontato = (prezzo - (0.1 * prezzo)) - sco * (prezzo - (0.1 * prezzo));
     }
-    else if (tipo == 3)
+    else if (tipoCliente == 3)
     {
-      ris = (0.7 * quantità) - sco * (0.7 * quantità);
+      prezzoScontato = (0.7 * prezzo) - sco * (0.7 * prezzo);
     }
-    else if (tipo == 4)
+    else if (tipoCliente == 4)
     {
-      ris = (quantità - (0.5 * quantità)) - sco * (quantità - (0.5 * quantità));
+      prezzoScontato = (prezzo - (0.5 * prezzo)) - sco * (prezzo - (0.5 * prezzo));
     }
-    return ris;
+    return prezzoScontato;
   }
 
     
