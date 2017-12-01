@@ -13,6 +13,12 @@ public class RefactoringExe {
 
     /**
      * @param args the command line arguments
+     * PROBLEMI: 
+     * Illeggibile. Richiede tempo.
+     * Nomi oscuri. Che sono? A che serve questa classe
+     * Numeri magici. Che sono 1,2,3,4
+     * Altri numeri magici. Ce sono 0.1,0.5, 0.7?
+     * Ripetizione: vedete codice ripetuto??
      */
 
   public double Calcola(double quantità, double tipo, double anni)
