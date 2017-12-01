@@ -16,15 +16,22 @@ public class RefactoringExe {
      * PROBLEMI: 
 
      * Altri numeri magici. Ce sono 0.1,0.5, 0.7?
-     * Ripetizione: vedete codice ripetuto??
+     * 
      * BUG OSCURO?
      * 
-     * RISOLTO (tramite Refactor->Rename:
+     * RISOLTO (tramite Riscrittura)
      * Illeggibile. Richiede tempo.
      * Nomi oscuri. Che sono? A che serve questa classe
      * Numeri magici. Che sono 1,2,3,4
+     * Ripetizione: vedete codice ripetuto??
      */
 
+  private static double prezzoFinale(double prezzo,double sconto,double scoCli){
+        prezzo = (prezzo - (scoCli * prezzo));
+        prezzo = prezzo - (sconto*prezzo); 
+      return prezzo;
+  }
+    
   public double applicaSconto(double prezzo, double tipoCliente, double anni)
   {
         /** assolutamente migliorabile, vedremo come **/
@@ -33,7 +40,7 @@ public class RefactoringExe {
         final int BRONZO = 3;
         final int ARGENTO = 4;
       
-      
+           
     double prezzoScontato = 0;
     double sco = (anni > 5) ? (double)5/100 : (double)anni/100; 
     if (tipoCliente == NONREGISTRATO)
@@ -42,15 +49,15 @@ public class RefactoringExe {
     }
     else if (tipoCliente == STANDARD)
     {
-      prezzoScontato = (prezzo - (0.1 * prezzo)) - sco * (prezzo - (0.1 * prezzo));
+      prezzoScontato = prezzoFinale(prezzo,sco,0.1);
     }
     else if (tipoCliente == BRONZO)
     {
-      prezzoScontato = (0.7 * prezzo) - sco * (0.7 * prezzo);
+      prezzoScontato = prezzoFinale(prezzo,sco,0.3);
     }
     else if (tipoCliente == ARGENTO)
     {
-      prezzoScontato = (prezzo - (0.5 * prezzo)) - sco * (prezzo - (0.5 * prezzo));
+      prezzoScontato = prezzoFinale(prezzo,sco,0.5);;
     }
     return prezzoScontato;
   }
