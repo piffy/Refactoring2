@@ -15,15 +15,16 @@ public class RefactoringExe {
      * @param args the command line arguments
      * PROBLEMI: 
 
-     * Altri numeri magici. Ce sono 0.1,0.5, 0.7?
+
      * 
      * BUG OSCURO?
      * 
-     * RISOLTO (tramite Riscrittura)
+     * RISOLTO (tramite Search/Replace)
      * Illeggibile. Richiede tempo.
      * Nomi oscuri. Che sono? A che serve questa classe
      * Numeri magici. Che sono 1,2,3,4
      * Ripetizione: vedete codice ripetuto??
+     * Altri numeri magici. Ce sono 0.1,0.5, 0.7?
      */
 
   private static double prezzoFinale(double prezzo,double sconto,double scoCli){
@@ -40,24 +41,28 @@ public class RefactoringExe {
         final int BRONZO = 3;
         final int ARGENTO = 4;
       
+        final int MASSIMO_SCONTO_LEALTA = 5;
+        final double SCONTO_STANDARD = 0.1;
+        final double SCONTO_BRONZO = 0.3;
+        final double SCONTO_ARGENTO = 0.5;
            
     double prezzoScontato = 0;
-    double sco = (anni > 5) ? (double)5/100 : (double)anni/100; 
+    double sco = (anni > MASSIMO_SCONTO_LEALTA) ? (double)MASSIMO_SCONTO_LEALTA/100 : (double)anni/100; 
     if (tipoCliente == NONREGISTRATO)
     {
       prezzoScontato = prezzo;
     }
     else if (tipoCliente == STANDARD)
     {
-      prezzoScontato = prezzoFinale(prezzo,sco,0.1);
+      prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_STANDARD);
     }
     else if (tipoCliente == BRONZO)
     {
-      prezzoScontato = prezzoFinale(prezzo,sco,0.3);
+      prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_BRONZO);
     }
     else if (tipoCliente == ARGENTO)
     {
-      prezzoScontato = prezzoFinale(prezzo,sco,0.5);;
+      prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_ARGENTO);
     }
     return prezzoScontato;
   }
