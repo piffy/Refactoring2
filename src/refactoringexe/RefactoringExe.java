@@ -14,17 +14,14 @@ public class RefactoringExe {
     /**
      * @param args the command line arguments
      * PROBLEMI: 
-
-
-     * 
-     * BUG OSCURO?
-     * 
-     * RISOLTO (tramite Search/Replace)
+ 
+     * RISOLTO (tramite riscrittura codice e lancio Errore)
      * Illeggibile. Richiede tempo.
      * Nomi oscuri. Che sono? A che serve questa classe
      * Numeri magici. Che sono 1,2,3,4
      * Ripetizione: vedete codice ripetuto??
      * Altri numeri magici. Ce sono 0.1,0.5, 0.7?
+     * BUG OSCURO.
      */
 
   private static double prezzoFinale(double prezzo,double sconto,double scoCli){
@@ -47,23 +44,16 @@ public class RefactoringExe {
         final double SCONTO_ARGENTO = 0.5;
            
     double prezzoScontato = 0;
-    double sco = (anni > MASSIMO_SCONTO_LEALTA) ? (double)MASSIMO_SCONTO_LEALTA/100 : (double)anni/100; 
-    if (tipoCliente == NONREGISTRATO)
-    {
-      prezzoScontato = prezzo;
+    double sco = (anni > MASSIMO_SCONTO_LEALTA) ? (double)MASSIMO_SCONTO_LEALTA/100 : (double)anni/100;
+    
+    switch((int)tipoCliente){
+        case NONREGISTRATO: prezzoScontato = prezzo;break;
+        case STANDARD: prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_STANDARD); break;
+        case BRONZO: prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_BRONZO); break;
+        case ARGENTO: prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_ARGENTO);break;
+        default: throw new Error("Tipo Cliente non previsto");
     }
-    else if (tipoCliente == STANDARD)
-    {
-      prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_STANDARD);
-    }
-    else if (tipoCliente == BRONZO)
-    {
-      prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_BRONZO);
-    }
-    else if (tipoCliente == ARGENTO)
-    {
-      prezzoScontato = prezzoFinale(prezzo,sco,SCONTO_ARGENTO);
-    }
+    
     return prezzoScontato;
   }
 
